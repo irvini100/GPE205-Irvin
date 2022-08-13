@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: b59d5c2620aec5a42b8c5381d49964c8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerControllerPrefab: {fileID: 2309027060503665020, guid: 1b7261b1a01b04c4b9545d7f5f9953f6, type: 3}
+  - tankPawnPrefab: {fileID: 6731686732806403055, guid: 27a8096ee3a1b304f8c5a3d3a888b6ed, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
