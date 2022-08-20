@@ -10,6 +10,16 @@ public float moveSpeed;
 public float health;
 public float maxHealth;
 public float fireRate;
+//Variable to hold our shooter.
+public Shooter shooter;
+//Variable for our shellPreFab.
+public GameObject Bullet;
+//Variable for our firing force.
+public float fireForce;
+//Variable for our damage done.
+public float damageDone;
+//Variable for how long our bullets survive if they don't collide.
+public float shellLifeSpan;
 
     
    
@@ -27,6 +37,7 @@ public float fireRate;
         mover = GetComponent<Mover>();
         tankPawn = GetComponent<TankPawn>();
         tankShooter = GetComponent<TankShooter>();
+        shooter = GetComponent<Shooter>();
     
     }
 
@@ -40,4 +51,6 @@ public float fireRate;
     public abstract void MoveBackward();
     public abstract void RotateClockwise();
     public abstract void RotateCounterClockwise();
+    public abstract void Shoot();
+    public abstract void RotateTowards(Vector3 targetPosition);
 }

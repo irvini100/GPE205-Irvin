@@ -47,11 +47,19 @@ public Rigidbody rb;
         mover.Rotate(-turnSpeed);
     }
 
-    private void Shoot()
+    public override void Shoot()
     {
-     if (Time.time >= secondsForShot)
-     {
-          secondsForShot = Time.time + shotsPerSecond;
-     }
+     shooter.Shoot(Bullet, fireForce, damageDone, shellLifeSpan);
+    }
+
+
+    public override void RotateTowards(Vector3 targetPosition)
+    {
+        //Find the vector to our target.
+        Vector3 vectorToTarget = targetPosition - transform.position;
+        //Find the rotation to look down that vector.
+        Quaternion targetRotation = Quaternion.LookRotation(vectorToTarget, Vector3.up);
+        //Rotate closer to that vector, but don't rotate more than our turn speed allows in one frame.
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
     }
 }
