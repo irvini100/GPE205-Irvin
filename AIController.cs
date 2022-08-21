@@ -164,6 +164,7 @@ public AIStates currentState;
                 RestartPatrol();
             }
         }
+        }
 
         protected void RestartPatrol()
         {
@@ -194,7 +195,7 @@ public AIStates currentState;
             //Return true if we have a target, false if we don't.
             return (target != null);
         }
-    }
+    
 
     protected void TargetNearestTank()
     {
@@ -219,5 +220,47 @@ public AIStates currentState;
 
         //Target the closest tank.
         target = closestTank.gameObject;
+    }
+
+    public bool CanHear(GameObject target)
+    {
+        //Get the target's noisemaker.
+        NoiseMaker noiseMaker = target.GetComponent<NoiseMaker>();
+        //If they don't have one, they can't make noise, so return false.
+        if (noiseMaker == null)
+        {
+            return false;
+        }
+
+        //If they are making a noise, add the volumeDistance in the noiseMaker to the hearingDistance of this AI.
+        float totalDistance = noiseMaker.voluemeDistance + hearingDistance;
+        //If the distance between our pawn and target is closer than this...
+        if (Vector3.Distance(pawn.transform.position, target.transform.position) <= totalDistance)
+        {
+            //...then we can hear the target.
+            return true;
+        }
+        else
+        {
+            //Otherwise, we are too far away to hear them.
+            return false;
+        }
+    }
+
+    public bool CanSee(GameObject target)
+    {
+        //Find the vector from the agent to the target.
+        Vector3 agentToTargetVector = target.transform.position - transform.position;
+        //Find the angle between the direction our agent is facing (forward in local space) and the vector to the target.
+        float angleToTarget = Vector3.Angle(agentToTargetVector, pawn.transform.forward);
+        //If that angle is less than our field of view.
+        if (angleToTarget < fieldOfView)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
