@@ -12,6 +12,8 @@ public Transform[] waypoints;
 public float waypointStopDistance;
 private int currentWaypoint = 0;
 public AIStates currentState;
+public float fieldOfView;
+public float hearingDistance;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -233,7 +235,7 @@ public AIStates currentState;
         }
 
         //If they are making a noise, add the volumeDistance in the noiseMaker to the hearingDistance of this AI.
-        float totalDistance = noiseMaker.voluemeDistance + hearingDistance;
+        float totalDistance = noiseMaker.volumeDistance + hearingDistance;
         //If the distance between our pawn and target is closer than this...
         if (Vector3.Distance(pawn.transform.position, target.transform.position) <= totalDistance)
         {

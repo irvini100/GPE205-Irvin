@@ -2,32 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankShooter : MonoBehaviour
+public class TankShooter : Shooter
 {
-public Transform firePoint;
-public GameObject bulletPrefab;
-public int maxAmmo;
-private int currentAmmo;
-public float bulletforce = 10;
+public Transform firePointTransform;
+
     // Start is called before the first frame update
-    public void Start()
+    public override void Start()
     {
-        currentAmmo = maxAmmo;
+
     }
 
     // Update is called once per frame
-    public void Update()
+    public override void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Shoot();
-        }
+
     }
 
-    public void Shoot()
+    public override void Shoot(GameObject Bullet, float fireForce, float damageDone, float lifespan)
     {
-     currentAmmo--;
-     GameObject newbullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-     newbullet.GetComponent<Rigidbody>().AddForce(newbullet.transform.forward*bulletforce);
+    //Instantiate our projectile
+    GameObject newShell = Instantiate(Bullet, firePointTransform.position, firePointTransform.rotation) as GameObject;
+    //Get the damageOnhit component.
+    DamageOnHit doh = newShell.GetComponent<DamageOnHit>();
+    //If it has one.
+    if (doh != null)
+    {
+        //...set the damageDone in the DamageOnHit component to the value passed in.
+        doh.damageDone = damageDone;
+        //...set the owner to the pawn that shot this shell, if there is one (otherwise, owner is null).
+        doh.owner = GetComponent<Pawn>();
+    }
+     //Get the rigidbody component.
+     Rigidbody rb = newShell.GetComponent<Rigidbody>();
+     //If it has one.
+     if (rb != null)
+     {
+          //...Addforce to make it move forward.
+          rb.AddForce(firePointTransform.forward * fireForce);
+     }
+
+     //Destroy it after a set time.
+     Destroy(newShell, lifespan);
     }
 }
