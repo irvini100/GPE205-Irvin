@@ -6,6 +6,7 @@ public class Health : MonoBehaviour
 {
 public float currentHealth;
 public float maxHealth;
+public int health;
     // Start is called before the first frame update
     void Start()
     {//Set health to max.
@@ -16,6 +17,11 @@ public float maxHealth;
     void Update()
     {
      currentHealth = Mathf.Clamp (currentHealth, 0, maxHealth); 
+    }
+
+    public void PlayerTakeDamage(int damage)
+    {
+        health = health - damage;
     }
 
     public void TakeDamage(float amount, Pawn source)

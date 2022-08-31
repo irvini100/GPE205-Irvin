@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 4033740993858147220}
   - component: {fileID: 3887088537959473390}
   - component: {fileID: -5275631323785948876}
+  - component: {fileID: 1428689899498407106}
+  - component: {fileID: 9147826141734316732}
   m_Layer: 0
   m_Name: PlayerTank
   m_TagString: Untagged
@@ -138,6 +140,11 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   fireRate: 0
+  shooter: {fileID: 0}
+  Bullet: {fileID: 0}
+  fireForce: 0
+  damageDone: 0
+  shellLifeSpan: 0
   mover: {fileID: 4033740993858147220}
   tankPawn: {fileID: 4033740993858147223}
   tankShooter: {fileID: 0}
@@ -145,6 +152,7 @@ MonoBehaviour:
   Mover: {fileID: 4033740993858147220}
   tf: {fileID: 3490293501795890273}
   rb: {fileID: 4033740993858147221}
+  shotsPerSecond: 1
   xAxis: 0
   zAxis: 0
 --- !u!114 &4033740993858147220
@@ -171,10 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdfbc22598723ff4b814926516b896dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  maxAmmo: 0
-  bulletforce: 10
+  firePointTransform: {fileID: 0}
 --- !u!114 &-5275631323785948876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,5 +192,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4341eb40624f9748ad27074db87e172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 0
   maxHealth: 100
-  Health: 0
+  health: 0
+--- !u!114 &1428689899498407106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4268238022481653467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54c1179cf9f8f04c8a0a57ce5a38208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9147826141734316732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4268238022481653467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee48cf63dda23d643a7f850c9f4ad67f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
