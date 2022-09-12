@@ -5,10 +5,7 @@ using UnityEngine;
 public class HealthPickup : MonoBehaviour
 {
  private GameObject spawnedPickup;
-  public GameObject pickupPrefab;
-  public float spawnDelay;
-  private float nextSpawnTime;
-  private Transform tf;
+ 
   
   public HealthPowerup powerup;
   
@@ -20,27 +17,12 @@ public class HealthPickup : MonoBehaviour
 
   public  void Start()
   {
-		nextSpawnTime = Time.time + spawnDelay;
+
   }
 
-  public  void Update()
+  public void Update()
   {
-    //If it is there is nothing spawns.
-	if (spawnedPickup == null)
-	{
-		//And it is time to spawn.
-		if (Time.time > nextSpawnTime)
-		{
-			//Spawn it and set the next time.
-			spawnedPickup = Instantiate(pickupPrefab, tf.position, Quaternion.identity) as GameObject;
-			nextSpawnTime = Time.time + spawnDelay;
-		}
-  }
-  else
-  {
-		//Otherwise, the object still exists, so postpone the spawn.
-		nextSpawnTime = Time.time + spawnDelay;
-  }
+
   }
   
 public void OnTriggerEnter(Collider other)
